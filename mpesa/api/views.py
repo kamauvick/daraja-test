@@ -8,6 +8,7 @@ from mpesa.api.serializers import LNMOnlineSerializer
 from mpesa.models import LNMOnline
 
 from datetime import datetime
+import pytz
 
 class LNMCallbackUrlApiView(CreateAPIView):
     queryset = LNMOnline.objects.all()
@@ -28,6 +29,8 @@ class LNMCallbackUrlApiView(CreateAPIView):
         str_transaction_date = str(transaction_date)
         transaction_date = datetime.strptime(str_transaction_date, '%Y%m%d%H%M%S')
 
+        aware_transaction_date = pytz.utc.localize(transaction_date)
+
         mpesa_model_data = LNMOnline.objects.create(
             merchant_request_id = merchant_request_id,
             checkout_request_id = checkout_request_id,
@@ -36,7 +39,7 @@ class LNMCallbackUrlApiView(CreateAPIView):
             amount = amount,
             mpesa_receipt_number = mpesa_receipt_number,
             balance = balance,
-            transaction_date = transaction_date,
+            transaction_date = aware_transaction_date,
             phonenumber = phonenumber,
         )
         
