@@ -30,4 +30,5 @@ class Profile(models.Model):
         instance.profile.save()
 
 
-
+class LNMOnline(models.Model):
+    pass
