@@ -31,4 +31,13 @@ class Profile(models.Model):
 
 
 class LNMOnline(models.Model):
-    pass
+    merchant_request_id = models.CharField(max_length=50)
+    checkout_request_id = models.CharField(max_length=120)
+    result_code = models.IntegerField()
+    result_desc = models.TextField()
+    amount = models.FloatField()
+    mpesa_receipt_number = models.CharField(max_length=15)
+    balance = models.CharField(blank=True, null=True , max_length=12)
+    transaction_date = models.DateTimeField()
+    phonenumber = models.CharField(max_length=13)
+
