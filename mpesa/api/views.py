@@ -29,6 +29,7 @@ class LNMCallbackUrlApiView(CreateAPIView):
         str_transaction_date = str(transaction_date)
         transaction_date = datetime.strptime(str_transaction_date, '%Y%m%d%H%M%S')
 
+        #Sync Safaricoms response time with server time
         aware_transaction_date = pytz.utc.localize(transaction_date)
 
         mpesa_model_data = LNMOnline.objects.create(
