@@ -41,8 +41,5 @@ class LNMOnline(models.Model):
     transaction_date = models.DateTimeField()
     phonenumber = models.CharField(max_length=13)
 
-    class Meta:
-        db_table = 'lipanampesa'
-
     def __repr__(self):
         return f'Transaction: {mpesa_receipt_number}'
