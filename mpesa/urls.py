@@ -5,10 +5,9 @@ from django.urls import path, re_path
 from django.contrib.auth import views
 
 urlpatterns = [
-    path('signup/', signup, name='signup'),
-    path('login/', views.LoginView.as_view(), name='login'),
-    path('logout/', views.LogoutView.as_view(), name='logout'),
-    path('', index, name='index'),
+    re_path(r'^rest-auth/', include('rest_auth.urls')),
+    re_path(r'^rest-auth/registration/', include('rest_auth.registration.urls'))
+
 ]
 
 if settings.DEBUG:
