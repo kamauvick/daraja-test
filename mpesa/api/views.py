@@ -41,7 +41,7 @@ class LNMCallbackUrlApiView(CreateAPIView):
         
         mpesa_model_data.save()
 
-        transaction_data = LNMOnline.odjects.all()
+        transaction_data = LNMOnline.objects.all()
         response_data = LNMOnlineSerializer(transaction_data, many=True)
 
         return Response(response_data)
