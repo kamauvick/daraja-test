@@ -35,6 +35,6 @@ Test working with safaricom daraja api's
     > Simulate_c2b_transaction
     * ShortCode
     * CommandID
-    * Amount
+    * Amount    
     * Msisdn
     * BillRefNumber

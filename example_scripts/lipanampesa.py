@@ -5,7 +5,7 @@ from keys import *
 from access_token import generate_access_token
 from utils import generate_timestamp
 from password import generate_password
-
+from decouple import Csv, config
 # Excecute all functions
 
 formatted_time = generate_timestamp()
@@ -26,8 +26,8 @@ def lipa_na_mpesa():
         "PartyA": config('PhoneNumber'),
         "PartyB": config('BusinessShortCode'),
         "PhoneNumber": config('PhoneNumber'),
-        "CallBackURL": "https://vickecommerce.com/lipanampesa",
-        "AccountReference": "12345678",
+        "CallBackURL": config('LNM_CALLBACK_URL'),
+        "AccountReference": "vicks_test",
         "TransactionDesc": "Pay for internet"
     }
     
