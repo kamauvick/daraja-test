@@ -1,0 +1,15 @@
+ul{
+    display: flex;
+    justify-content: space-around;
+}
+li{
+    text-decoration: none;
+    list-style-type: none;
+    margin: 5px;
+}
+figcaption{
+    text-align: center;
+}
+.helptext{
+  visibility: hidden;
+}
