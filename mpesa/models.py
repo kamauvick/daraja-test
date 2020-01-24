@@ -42,4 +42,4 @@ class LNMOnline(models.Model):
     phonenumber = models.CharField(max_length=13)
 
     def __repr__(self):
-        return f'Transaction: {mpesa_receipt_number}'
+        return f'{self.phonenumber} has sent {self.amount} >> Transaction No: {self.mpesa_receipt_number}'
