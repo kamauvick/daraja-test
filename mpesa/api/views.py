@@ -8,7 +8,7 @@ from mpesa.models import LNMOnline
 class LNMCallbackUrlApiView(CreateAPIView):
     queryset = LNMOnline.objects.all()
     serializer_class = LNMOnlineSerializer
-    permission_classes = [AllowAny,]
+    permission_classes = [AllowAny]
 
     def create(self, request, *args, **kwargs):
         # return super().create(request, *args, **kwargs)
