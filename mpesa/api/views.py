@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
+from django.http import JsonResponse
 
 from mpesa.api.serializers import LNMOnlineSerializer
 from mpesa.models import LNMOnline
@@ -44,4 +45,4 @@ class LNMCallbackUrlApiView(CreateAPIView):
         transaction_data = LNMOnline.objects.all()
         response_data = LNMOnlineSerializer(transaction_data, many=True)
 
-        return Response(response_data)
+        return Response(response_data.data)
