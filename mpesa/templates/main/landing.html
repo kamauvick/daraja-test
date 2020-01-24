@@ -1,0 +1,48 @@
+{% extends 'base.html'%}
+{% load static%}
+{% block content %}
+<div class="jumbotron">
+    <h1 class="text-center">Hello Ecommerce</h1>
+    <button><a href="{% url 'logout'%}"></a>Logout</button>
+</div>
+
+<h5 class="ml-4">Product catalog:</h5>
+
+<ul id="unordered-list" class="mt-3">
+    <li>
+        <div class="card">
+            <figure>
+                <img src="{% static "assets/laptop.jpeg" %}" alt="image here">
+                <figcaption class="text-center">this is an image</figcaption class="text-center">
+            </figure>
+        </div>
+    </li>
+    <li>
+        <div class="card">
+            <figure>
+                <img src="{% static "assets/laptop.jpeg" %}" alt="image here">
+                <figcaption class="text-center">this is an image
+            </figure>
+            </figure>
+        </div>
+    </li>
+    <li>
+        <div class="card">
+            <figure>
+                <img src="{% static "assets/laptop.jpeg" %}" alt="image here">
+                <figcaption class="text-center">this is an image
+            </figure>
+            </figure>
+        </div>
+    </li>
+    <li>
+        <div class="card">
+            <figure>
+                <img src="{% static "assets/laptop.jpeg" %}" alt="image here">
+                <figcaption class="text-center">this is an image
+            </figure>
+            </figure>
+        </div>
+    </li>
+</ul>
+{% endblock%}

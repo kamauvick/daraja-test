@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+{% load static%}
+{% load crispy_forms_tags %}
+
+{%block content%}
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <form action="" method="post" novalidate>
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button class="btn btn-sm btn-info">Login</button>
+            </form>
+        </div>
+        <div class="col-md-3">
+            <div class="text-center">
+                <p>Create a new account? <a href="{% url 'signup'%}">Sign Up</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}

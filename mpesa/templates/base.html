@@ -1,0 +1,42 @@
+{% load bootstrap4 %}
+{% load static%}
+<html>
+<head>
+      <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+
+    </script>
+     <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145844223-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'UA-145844223-1');
+  </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block styles %}
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+    {% endblock %}
+</head>
+<body>
+{% block content %}
+{% endblock %}
+</body>
+{% block scripts %}
+<script src="{% static '/js/index.js'%}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{% bootstrap_javascript %}
+{% endblock %}
+
+</html>
