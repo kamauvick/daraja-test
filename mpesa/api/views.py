@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
 
 from mpesa.api.serializers import LNMOnlineSerializer
 from mpesa.models import LNMOnline
@@ -13,8 +14,6 @@ class LNMCallbackUrlApiView(CreateAPIView):
     permission_classes = [AllowAny]
 
     def create(self, request):
-        print(request.data, 'this is the request data.')
-
         merchant_request_id = request.data['Body']['stkCallback']['MerchantRequestID']
         checkout_request_id = request.data['Body']['stkCallback']['CheckoutRequestID']
         result_code  = request.data['Body']['stkCallback']['ResultCode']
@@ -41,3 +40,8 @@ class LNMCallbackUrlApiView(CreateAPIView):
         )
         
         mpesa_model_data.save()
+
+        transaction_data = LNMOnline.odjects.all()
+        response_data = LNMOnlineSerializer(transaction_data, many=True)
+
+        return Response(response_data)
