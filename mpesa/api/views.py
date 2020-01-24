@@ -10,6 +10,5 @@ class LNMCallbackUrlApiView(CreateAPIView):
     serializer_class = LNMOnlineSerializer
     permission_classes = [AllowAny,]
 
-    def create(self, request, *args, **kwargs):
-        # return super().create(request, *args, **kwargs)
+    def create(self, request):
         print(request.data, 'this is the request data.')
