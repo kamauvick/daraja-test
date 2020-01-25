@@ -6,6 +6,8 @@ from .views import LNMCallbackUrlApiView
 
 urlpatterns = [
     path('lnm/', LNMCallbackUrlApiView.as_view(), name='lnm_callback_url'),
+    path('validation_url/', LNMCallbackUrlApiView.as_view(), name='validation_url'),
+    path('confirmation_url/', LNMCallbackUrlApiView.as_view(), name='confirmation_url'),
 ]
 
 if settings.DEBUG:

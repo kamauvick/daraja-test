@@ -43,3 +43,6 @@ class LNMOnline(models.Model):
 
     def __repr__(self):
         return f'{self.phonenumber} has sent {self.amount} >> Transaction No: {self.mpesa_receipt_number}'
+
+class C2BPayments(models.Model):
+    pass

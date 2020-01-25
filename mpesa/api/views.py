@@ -4,8 +4,8 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from django.http import JsonResponse
 
-from mpesa.api.serializers import LNMOnlineSerializer
-from mpesa.models import LNMOnline
+from mpesa.api.serializers import LNMOnlineSerializer, C2BPaymentsSerializer
+from mpesa.models import LNMOnline, C2BPayments
 
 from datetime import datetime
 import pytz
@@ -50,3 +50,23 @@ class LNMCallbackUrlApiView(CreateAPIView):
         response_data = LNMOnlineSerializer(transaction_data, many=True)
 
         return Response(response_data.data)
+
+
+class C2BValidationApiView(CreateAPIView):
+    queryset = C2BPayments.objects.all()
+    serializer_class = C2BPaymentsSerializer
+    permission_classes = [AllowAny]
+
+    def create(self, request):
+        print(request.data , ': Data from validation')
+        return Response('Success!')
+
+
+class C2BConfirmationApiView(CreateAPIView):
+    queryset = C2BPayments.objects.all()
+    serializer_class = C2BPaymentsSerializer
+    permission_classes = [AllowAny]
+
+    def create(self, request):
+        print(request.data, ': Data from Confirmation')
+        return Response({'Result_Desc': 0})
