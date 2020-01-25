@@ -59,8 +59,5 @@ class C2BPayments(models.Model):
     middle_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
 
-    class Meta:
-        db_table = 'c2bpayments'
-    
     def __repr__(self):
         return f'{self.first_name} has paid {self.transaction_amount} to {self.business_short_code}.'
