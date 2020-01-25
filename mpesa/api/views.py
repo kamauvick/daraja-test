@@ -110,41 +110,22 @@ class C2BConfirmationApiView(CreateAPIView):
     # def create(self, request):
         # print(request.data, ': Data from Confirmation')
 
-    #     transaction_time = request.data['TransTime']
-    #     str_transaction_date = str(transaction_time)
-    #     transaction_date = datetime.strptime(str_transaction_date, '%Y%m%d%H%M%S')
-    #     #Sync Safaricoms response time with server time
-    #     aware_transaction_date = pytz.utc.localize(transaction_date)
-
-    #     transaction_type = request.data['TransactionType']
-    #     transaction_id = request.data['TransID']
-    #     transaction_time = aware_transaction_date
-    #     transaction_amount = request.data['TransAmount']
-    #     business_short_code = request.data['BusinessShortCode']
-    #     bill_ref_number = request.data['BillRefNumber']
-    #     invoice_number = request.data['InvoiceNumber']
-    #     org_account_balance = request.data['OrgAccountBalance']
-    #     third_party_transaction_id = request.data['ThirdPartyTransID']
-    #     phone_number = request.data['MSISDN']
-    #     first_name = request.data['FirstName']
-    #     middle_name = request.data['MiddleName']
-    #     last_name = request.data['LastName']
-
-    #     c2bmodel_data = C2BPayments.objects.create(
-    #         transaction_type = transaction_type,
-    #         transaction_id = transaction_id,
-    #         transaction_time = transaction_time,
-    #         transaction_amount = transaction_amount,
-    #         business_short_code = business_short_code,
-    #         bill_ref_number = bill_ref_number,
-    #         invoice_number = invoice_number,
-    #         org_account_balance = org_account_balance,
-    #         third_party_transaction_id = third_party_transaction_id,
-    #         phone_number = phone_number,
-    #         first_name = first_name,
-    #         middle_name = middle_name,
-    #         last_name = last_name,
-
-    #     )
-    #     c2bmodel_data.save()
         # return Response({'Result_Desc': 0})
+
+"""
+{ 
+   'TransactionType':'Pay Bill',
+   'TransID':'OAP01HB4NY',
+   'TransTime':'20200125135631',
+   'TransAmount':'1.00',
+   'BusinessShortCode':'601374',
+   'BillRefNumber':'12345',
+   'InvoiceNumber':'',
+   'OrgAccountBalance':'5584.00',
+   'ThirdPartyTransID':'',
+   'MSISDN':'254708374149',
+   'FirstName':'John',
+   'MiddleName':'J.',
+   'LastName':'Doe'
+}
+"""

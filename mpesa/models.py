@@ -45,19 +45,19 @@ class LNMOnline(models.Model):
         return f'{self.phonenumber} has sent {self.amount} >> Transaction No: {self.mpesa_receipt_number}'
 
 class C2BPayments(models.Model):
-    transaction_type = models.CharField(max_length=50, blank=True, null=True)
-    transaction_id = models.CharField(max_length=30, blank=True, null=True)
-    transaction_time = models.CharField(max_length=50, blank=True, null=True)
-    transaction_amount = models.CharField(max_length=120, blank=True, null=True)
-    business_short_code = models.CharField(max_length=50, blank=True, null=True)
-    bill_ref_number = models.CharField(max_length=120, blank=True, null=True)
-    invoice_number = models.CharField(max_length=120, blank=True, null=True)
-    org_account_balance = models.CharField(max_length=120, blank=True, null=True)
-    third_party_transaction_id = models.CharField(max_length=120, blank=True, null=True)
-    phone_number = models.CharField(max_length=25, blank=True, null=True)
-    first_name = models.CharField(max_length=50, blank=True, null=True)
-    middle_name = models.CharField(max_length=50, blank=True, null=True)
-    last_name = models.CharField(max_length=50, blank=True, null=True)
+    TransactionType = models.CharField(max_length=50, blank=True, null=True)
+    TransID = models.CharField(max_length=30, blank=True, null=True)
+    TransTime = models.CharField(max_length=50, blank=True, null=True)
+    TransAmount = models.CharField(max_length=120, blank=True, null=True)
+    BusinessShortCode = models.CharField(max_length=50, blank=True, null=True)
+    BillRefNumber = models.CharField(max_length=120, blank=True, null=True)
+    InvoiceNumber = models.CharField(max_length=120, blank=True, null=True)
+    OrgAccountBalance = models.CharField(max_length=120, blank=True, null=True)
+    ThirdPartyTransID = models.CharField(max_length=120, blank=True, null=True)
+    MSISDN = models.CharField(max_length=25, blank=True, null=True)
+    FirstName = models.CharField(max_length=50, blank=True, null=True)
+    MiddleName = models.CharField(max_length=50, blank=True, null=True)
+    LastName = models.CharField(max_length=50, blank=True, null=True)
 
     def __repr__(self):
         return f'{self.first_name} has paid {self.transaction_amount} to {self.business_short_code}.'

@@ -23,12 +23,12 @@ class LNMOnline(admin.ModelAdmin):
 class C2BPayments(admin.ModelAdmin):
 
     list_display = ('id',
-                    'phone_number',
-                    'transaction_amount',
-                    'transaction_id',
-                    'transaction_time',
+                    'MSISDN',
+                    'TransAmount',
+                    'TransID',
+                    'TransTime',
                     )
 
-    list_filter = ('id', 'phone_number', 'transaction_time',)
+    list_filter = ('id', 'MSISDN', 'TransTime',)
 
     ordering = ("id",)
