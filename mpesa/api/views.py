@@ -96,7 +96,6 @@ class C2BValidationApiView(CreateAPIView):
             first_name = first_name,
             middle_name = middle_name,
             last_name = last_name,
-
         )
 
         c2bmodel_data.save()
@@ -108,8 +107,8 @@ class C2BConfirmationApiView(CreateAPIView):
     serializer_class = C2BPaymentsSerializer
     permission_classes = [AllowAny]
 
-    def create(self, request):
-        print(request.data, ': Data from Confirmation')
+    # def create(self, request):
+        # print(request.data, ': Data from Confirmation')
 
     #     transaction_time = request.data['TransTime']
     #     str_transaction_date = str(transaction_time)
@@ -147,6 +146,5 @@ class C2BConfirmationApiView(CreateAPIView):
     #         last_name = last_name,
 
     #     )
-
     #     c2bmodel_data.save()
-        return Response({'Result_Desc': 0})
+        # return Response({'Result_Desc': 0})
