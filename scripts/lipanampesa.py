@@ -26,7 +26,7 @@ def lipa_na_mpesa():
         "PartyA": config('PhoneNumber'),
         "PartyB": config('BusinessShortCode'),
         "PhoneNumber": config('PhoneNumber'),
-        "CallBackURL": config('LNM_CALLBACK_URL'),
+        "CallBackURL": "https://darajavick.herokuapp.com/api/payments/lnm/",
         "AccountReference": "vicks_test",
         "TransactionDesc": "Pay for internet"
     }
