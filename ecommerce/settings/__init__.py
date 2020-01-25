@@ -1,1 +1,1 @@
-from .local_settings import *
+from .production import *
