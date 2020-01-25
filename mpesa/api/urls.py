@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, re_path, include
-from .views import LNMCallbackUrlApiView, C2BValidationApiView, C2BConfirmationApiView
+from .views import LNMCallbackUrlApiView, C2BConfirmationApiView, C2BValidationApiView
 
 urlpatterns = [
     path('lnm/', LNMCallbackUrlApiView.as_view(), name='lnm_callback_url'),
