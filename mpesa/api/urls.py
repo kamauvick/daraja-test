@@ -6,8 +6,8 @@ from .views import LNMCallbackUrlApiView, C2BValidationApiView, C2BConfirmationA
 
 urlpatterns = [
     path('lnm/', LNMCallbackUrlApiView.as_view(), name='lnm_callback_url'),
-    path('validation_url/', C2BValidationApiView.as_view(), name='validation_url'),
-    path('confirmation_url/', C2BConfirmationApiView.as_view(), name='confirmation_url'),
+    path('validation_url/', C2BValidationApiView.as_view(), name='c2b_validation_url'),
+    path('confirmation_url/', C2BConfirmationApiView.as_view(), name='c2b_confirmation_url'),
 ]
 
 if settings.DEBUG:
