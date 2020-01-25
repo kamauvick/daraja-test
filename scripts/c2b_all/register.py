@@ -9,9 +9,12 @@ def register_url():
     headers = {"Authorization": "Bearer %s" % my_access_token}
     request = {"ShortCode": c2b_shortcode,
                "ResponseType": "Completed",
-               "ConfirmationURL": "https://darajavick.herokuapp.com/api/payments/validation_url/",
-               "ValidationURL": "https://darajavick.herokuapp.com/api/payments/confirmation_url/"}
+               "ConfirmationURL": "https://darajavick.herokuapp.com/api/payments/confirmation_url/",
+               "ValidationURL": "https://darajavick.herokuapp.com/api/payments/validation_url/"}
 
     response = requests.post(api_url, json=request, headers=headers)
 
     print(response.text)
+
+
+
