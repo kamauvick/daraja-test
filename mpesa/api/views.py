@@ -68,6 +68,36 @@ class C2BConfirmationApiView(CreateAPIView):
     serializer_class = C2BPaymentsSerializer
     permission_classes = [AllowAny]
 
-    def create(self, request):
-        print(request.data, ': Data from Confirmation')
-        return Response({'Result_Desc': 0})
+    """
+    { 
+        'TransactionType':'Pay Bill',
+        'TransID':'OAP01HB4NY',
+        'TransTime':'20200125135631',
+        'TransAmount':'1.00',
+        'BusinessShortCode':'601374',
+        'BillRefNumber':'12345',
+        'InvoiceNumber':'',
+        'OrgAccountBalance':'5584.00',
+        'ThirdPartyTransID':'',
+        'MSISDN':'254708374149',
+        'FirstName':'John',
+        'MiddleName':'J.',
+        'LastName':'Doe'
+}
+    """
+    # def create(self, request):
+    #     print(request.data, ': Data from Confirmation')
+    #     transaction_type = request.data.
+    #     transaction_id
+    #     transaction_time
+    #     transaction_amount
+    #     business_short_code
+    #     bill_ref_number
+    #     invoice_number
+    #     org_account_balance
+    #     third_party_transaction_id
+    #     phone_number
+    #     first_name
+    #     middle_name
+    #     last_name
+    #     return Response({'Result_Desc': 0})

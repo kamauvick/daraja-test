@@ -45,4 +45,22 @@ class LNMOnline(models.Model):
         return f'{self.phonenumber} has sent {self.amount} >> Transaction No: {self.mpesa_receipt_number}'
 
 class C2BPayments(models.Model):
-    pass
+    transaction_type = models.CharField(max_length=50)
+    transaction_id = models.CharField(max_length=12)
+    transaction_time = models.CharField(max_length=14)
+    transaction_amount = models.FloatField()
+    business_short_code = models.CharField(max_length=50)
+    bill_ref_number = models.CharField(max_length=120)
+    invoice_number = models.CharField(max_length=120, blank=True, null=True)
+    org_account_balance = models.FloatField()
+    third_party_transaction_id = models.CharField(max_length=120, blank=True, null=True)
+    phone_number = models.CharField(max_length=13)
+    first_name = models.CharField(max_length=50)
+    middle_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+
+    class Meta:
+        db_table = 'c2bpayments'
+    
+    def __repr__(self):
+        return f'{self.first_name} has paid {self.transaction_amount} to {self.business_short_code}.'
