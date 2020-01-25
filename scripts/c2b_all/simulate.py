@@ -11,7 +11,7 @@ def simulate_c2b_transaction():
 
     request = {"ShortCode": c2b_shortcode,
                "CommandID": "CustomerPayBillOnline",
-               "Amount": "450",
+               "Amount": "5",
                "Msisdn": msisnd,
                "BillRefNumber": "12345"}
 
