@@ -2,12 +2,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, re_path, include
-from .views import LNMCallbackUrlApiView
+from .views import LNMCallbackUrlApiView, C2BValidationApiView, C2BConfirmationApiView
 
 urlpatterns = [
     path('lnm/', LNMCallbackUrlApiView.as_view(), name='lnm_callback_url'),
-    path('validation_url/', LNMCallbackUrlApiView.as_view(), name='validation_url'),
-    path('confirmation_url/', LNMCallbackUrlApiView.as_view(), name='confirmation_url'),
+    path('validation_url/', C2BValidationApiView.as_view(), name='validation_url'),
+    path('confirmation_url/', C2BConfirmationApiView.as_view(), name='confirmation_url'),
 ]
 
 if settings.DEBUG:
