@@ -167,7 +167,8 @@ class MakeLNMPayment(ModelViewSet):
         phonenumber = self.request.query_params.get('phone_number')
         amount = self.request.query_params.get('amount')
 
-        lipa_na_mpesa(phonenumber, amount)
+        payment = lipa_na_mpesa(phonenumber, amount)
+        print(payment)
         return super().get_queryset()
 
 
@@ -180,5 +181,6 @@ class MakeC2BPayment(ModelViewSet):
         phonenumber = self.request.query_params.get('phone_number')
         amount = self.request.query_params.get('amount')
 
-        simulate_c2b_transaction(phonenumber, amount)
+        payment = simulate_c2b_transaction(phonenumber, amount)
+        print(payment)
         return super().get_queryset()

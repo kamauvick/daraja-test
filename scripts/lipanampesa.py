@@ -14,6 +14,7 @@ my_access_token = generate_access_token()
 
 
 def lipa_na_mpesa(phonenumber, amount):
+    print('Start excecuting the Simulate LNMOnline function:::')
     access_token = my_access_token
     api_url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
     headers = { "Authorization": "Bearer %s" % access_token }

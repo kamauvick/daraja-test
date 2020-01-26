@@ -6,6 +6,7 @@ from scripts.access_token import generate_access_token
 my_access_token = generate_access_token()
 
 def simulate_c2b_transaction(phone_number, amount):
+    print('Start excecuting the Simulate C2B function:::')
     api_url = "https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate"
     headers = {"Authorization": "Bearer %s" % my_access_token}
 
