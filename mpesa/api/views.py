@@ -14,6 +14,7 @@ import pytz
 
 from scripts.lipanampesa import lipa_na_mpesa
 from scripts.c2b_all.simulate import simulate_c2b_transaction
+from scripts.c2b_all.register import register_url
 
 class LNMCallbackUrlApiView(CreateAPIView):
     queryset = LNMOnline.objects.all()
@@ -22,6 +23,29 @@ class LNMCallbackUrlApiView(CreateAPIView):
 
     def create(self, request):
         print(request.data) 
+
+        """
+        {'Body': 
+            {'stkCallback': 
+               {
+                    'MerchantRequestID': '21301-7887811-1', 
+                    'CheckoutRequestID': 'ws_CO_260120201833093897', 
+                    'ResultCode': 0, 
+                    'ResultDesc': 'The service request is processed successfully.', 
+                    'CallbackMetadata':
+                        {'Item': 
+                            [
+                                {'Name': 'Amount', 'Value': 2.0}, 
+                                {'Name': 'MpesaReceiptNumber', 'Value': 'OAQ6MVQHHI'}, 
+                                {'Name': 'Balance'},
+                                {'Name': 'TransactionDate', 'Value': 20200126183321}, 
+                                {'Name': 'PhoneNumber', 'Value': 254712115461}
+                            ]
+                        }
+                }
+            }   
+        }
+        """
         merchant_request_id = request.data['Body']['stkCallback']['MerchantRequestID']
         checkout_request_id = request.data['Body']['stkCallback']['CheckoutRequestID']
         result_code  = request.data['Body']['stkCallback']['ResultCode']
@@ -178,6 +202,8 @@ class MakeC2BPayment(ModelViewSet):
     permission_classes = [AllowAny]
 
     def get_queryset(self):
+        register_url()
+
         phonenumber = self.request.query_params.get('phone_number')
         amount = self.request.query_params.get('amount')
 
