@@ -42,7 +42,7 @@ class LNMOnline(models.Model):
     phonenumber = models.CharField(max_length=13)
 
     def __repr__(self):
-        return f'{self.phonenumber} has sent {self.amount} >> Transaction No: {self.mpesa_receipt_number}'
+        return f'{self.mpesa_receipt_number}'
 
 class C2BPayments(models.Model):
     TransactionType = models.CharField(max_length=50, blank=True, null=True)
@@ -60,4 +60,4 @@ class C2BPayments(models.Model):
     LastName = models.CharField(max_length=50, blank=True, null=True)
 
     def __repr__(self):
-        return f'{self.first_name} has paid {self.transaction_amount} to {self.business_short_code}.'
+        return f'{self.InvoiceNumber}'
