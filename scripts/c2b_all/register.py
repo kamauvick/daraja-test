@@ -14,7 +14,7 @@ def register_url():
 
     response = requests.post(api_url, json=request, headers=headers)
 
-    print(response.text)
+    return response
 
 
 
