@@ -1,6 +1,6 @@
 import requests
 from requests.auth import HTTPBasicAuth
-from keys import *
+from scripts.keys import *
 
 #Generate an access_token
 def generate_access_token():

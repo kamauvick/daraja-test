@@ -1,7 +1,9 @@
 from django.contrib.auth.models import User
 from rest_framework.generics import CreateAPIView
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
+from rest_framework.decorators import permission_classes
 from django.http import JsonResponse
 
 from mpesa.api.serializers import LNMOnlineSerializer, C2BPaymentsSerializer
@@ -9,6 +11,9 @@ from mpesa.models import LNMOnline, C2BPayments
 
 from datetime import datetime
 import pytz
+
+from scripts.lipanampesa import lipa_na_mpesa
+from scripts.c2b_all.simulate import simulate_c2b_transaction
 
 class LNMCallbackUrlApiView(CreateAPIView):
     queryset = LNMOnline.objects.all()
@@ -112,20 +117,29 @@ class C2BConfirmationApiView(CreateAPIView):
 
         # return Response({'Result_Desc': 0})
 
-"""
-{ 
-   'TransactionType':'Pay Bill',
-   'TransID':'OAP01HB4NY',
-   'TransTime':'20200125135631',
-   'TransAmount':'1.00',
-   'BusinessShortCode':'601374',
-   'BillRefNumber':'12345',
-   'InvoiceNumber':'',
-   'OrgAccountBalance':'5584.00',
-   'ThirdPartyTransID':'',
-   'MSISDN':'254708374149',
-   'FirstName':'John',
-   'MiddleName':'J.',
-   'LastName':'Doe'
-}
-"""
+
+# @permission_classes([IsAuthenticated])
+class MakeLNMPayment(ModelViewSet):
+    queryset = LNMOnline.objects.all()
+    serializer_class = LNMOnlineSerializer
+    permission_classes = [AllowAny]
+
+    def get_queryset(self):
+        phonenumber = self.request.query_params.get('phone_number')
+        amount = self.request.query_params.get('amount')
+
+        lipa_na_mpesa(phonenumber=phonenumber, amount=amount)
+        return super().get_queryset()
+
+
+class MakeC2BPayment(ModelViewSet):
+    queryset = C2BPayments.objects.all()
+    serializer_class = C2BPaymentsSerializer
+    permission_classes = [AllowAny]
+
+    def get_queryset(self):
+        phonenumber = self.request.query_params.get('phone_number')
+        amount = self.request.query_params.get('amount')
+
+        simulate_c2b_transaction(phonenumber=phonenumber, amount=amount)
+        return super().get_queryset()
