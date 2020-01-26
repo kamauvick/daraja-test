@@ -112,10 +112,49 @@ class C2BConfirmationApiView(CreateAPIView):
     serializer_class = C2BPaymentsSerializer
     permission_classes = [AllowAny]
 
-    # def create(self, request):
-        # print(request.data, ': Data from Confirmation')
+    def create(self, request):
+        print(request.data, ': Data from Confirmation')
+            
+        transaction_time = request.data['TransTime']
+        str_transaction_date = str(transaction_time)
+        transaction_date = datetime.strptime(str_transaction_date, '%Y%m%d%H%M%S')
+        #Sync Safaricoms response time with server time
+        aware_transaction_date = pytz.utc.localize(transaction_date)
+        print(aware_transaction_date)
 
-        # return Response({'Result_Desc': 0})
+        transaction_type = request.data['TransactionType']
+        transaction_id = request.data['TransID']
+        transaction_time = aware_transaction_date
+        transaction_amount = request.data['TransAmount']
+        business_short_code = request.data['BusinessShortCode']
+        bill_ref_number = request.data['BillRefNumber']
+        invoice_number = request.data['InvoiceNumber']
+        org_account_balance = request.data['OrgAccountBalance']
+        third_party_transaction_id = request.data['ThirdPartyTransID']
+        phone_number = request.data['MSISDN']
+        first_name = request.data['FirstName']
+        middle_name = request.data['MiddleName']
+        last_name = request.data['LastName']
+
+        c2bmodel_data = C2BPayments.objects.create(
+            TransactionType = transaction_type,
+            TransID = transaction_id,
+            TransTime = transaction_time,
+            TransAmount = transaction_amount,
+            BusinessShortCode = business_short_code,
+            BillRefNumber = bill_ref_number,
+            InvoiceNumber = invoice_number,
+            OrgAccountBalance = org_account_balance,
+            ThirdPartyTransID = third_party_transaction_id,
+            MSISDN = phone_number,
+            FirstName = first_name,
+            MiddleName = middle_name,
+            LastName = last_name,
+        )
+
+        c2bmodel_data.save()
+
+        return Response({'Result_Desc': 0})
 
 
 # @permission_classes([IsAuthenticated])
