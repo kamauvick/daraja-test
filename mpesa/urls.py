@@ -2,10 +2,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, re_path,include
 from django.contrib.auth import views
-from rest_framework.routers import DefaultRouter
+from rest_framework.routers import DefaultRouter, SimpleRouter
 from mpesa.api.views import MakeC2BPayment, MakeLNMPayment
 
-router = DefaultRouter()
+router = SimpleRouter()
 router.register('LNMPayment', MakeLNMPayment)
 router.register('C2BPayment', MakeC2BPayment)
 
