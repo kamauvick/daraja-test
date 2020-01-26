@@ -25,6 +25,8 @@ class LNMCallbackUrlApiView(CreateAPIView):
         print(request.data) 
 
         """
+        Callback url response
+
         {'Body': 
             {'stkCallback': 
                {
@@ -46,15 +48,17 @@ class LNMCallbackUrlApiView(CreateAPIView):
             }   
         }
         """
-        merchant_request_id = request.data['Body']['stkCallback']['MerchantRequestID']
-        checkout_request_id = request.data['Body']['stkCallback']['CheckoutRequestID']
-        result_code  = request.data['Body']['stkCallback']['ResultCode']
-        result_desc  = request.data['Body']['stkCallback']['ResultDesc']
-        amount = request.data['Body']['stkCallback']['CallbackMetadata']['Item'][0]['Value']
-        mpesa_receipt_number = request.data['Body']['stkCallback']['CallbackMetadata']['Item'][1]['Value']
+
+        stkCallback = request.data['Body']['stkCallback']
+        merchant_request_id = stkCallback['MerchantRequestID']
+        checkout_request_id = stkCallback['CheckoutRequestID']
+        result_code  = stkCallback['ResultCode']
+        result_desc  = stkCallback['ResultDesc']
+        amount = stkCallback['CallbackMetadata']['Item'][0]['Value']
+        mpesa_receipt_number = stkCallback['CallbackMetadata']['Item'][1]['Value']
         balance = ''
-        transaction_date = request.data['Body']['stkCallback']['CallbackMetadata']['Item'][2]['Value']
-        phonenumber = request.data['Body']['stkCallback']['CallbackMetadata']['Item'][3]['Value']
+        transaction_date = stkCallback['CallbackMetadata']['Item'][3]['Value']
+        phonenumber = stkCallback['CallbackMetadata']['Item'][4]['Value']
 
         str_transaction_date = str(transaction_date)
         transaction_date = datetime.strptime(str_transaction_date, '%Y%m%d%H%M%S')
