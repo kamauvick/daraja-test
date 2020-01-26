@@ -2,11 +2,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, re_path, include
-from .views import LNMCallbackUrlApiView, C2BConfirmationApiView, C2BValidationApiView, MakeLNMPayment
+from .views import LNMCallbackUrlApiView, C2BConfirmationApiView, C2BValidationApiView, MakeLNMPayment, MakeC2BPayment
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
-router.register('makepayment', MakeLNMPayment)
+router.register('LNMPayment', MakeLNMPayment)
+router.register('C2BPayment', MakeC2BPayment)
 
 
 urlpatterns = [
