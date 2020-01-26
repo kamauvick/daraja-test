@@ -3,7 +3,7 @@ from django.conf.urls.static import static
 from django.urls import path, re_path,include
 from django.contrib.auth import views
 from rest_framework.routers import DefaultRouter
-from .views import MakeLNMPayment, MakeC2BPayment
+from mpesa.api.views import MakeC2BPayment, MakeLNMPayment
 
 router = DefaultRouter()
 router.register('LNMPayment', MakeLNMPayment)
