@@ -18,4 +18,4 @@ def simulate_c2b_transaction(phone_number, amount):
 
     response = requests.post(api_url, json=request, headers=headers)
 
-    return response
+    return response.text
