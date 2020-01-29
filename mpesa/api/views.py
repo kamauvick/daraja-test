@@ -13,8 +13,9 @@ from datetime import datetime
 import pytz
 
 from scripts.lipanampesa import lipa_na_mpesa
-from scripts.c2b_all.register import register_url
-from scripts.c2b_all.simulate import simulate_c2b_transaction
+# from scripts.c2b_all.register import register_url
+# from scripts.c2b_all.simulate import simulate_c2b_transaction
+from scripts.c2b import register_url, simulate_c2b_transaction
 
 class LNMCallbackUrlApiView(CreateAPIView):
     queryset = LNMOnline.objects.all()
