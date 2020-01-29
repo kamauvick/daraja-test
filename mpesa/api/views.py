@@ -13,8 +13,8 @@ from datetime import datetime
 import pytz
 
 from scripts.lipanampesa import lipa_na_mpesa
-from scripts.c2b_all.simulate import simulate_c2b_transaction
 from scripts.c2b_all.register import register_url
+from scripts.c2b_all.simulate import simulate_c2b_transaction
 
 class LNMCallbackUrlApiView(CreateAPIView):
     queryset = LNMOnline.objects.all()
@@ -91,8 +91,8 @@ class C2BValidationApiView(CreateAPIView):
     serializer_class = C2BPaymentsSerializer
     permission_classes = [AllowAny]
 
-    # def create(self, request):
-    #     print(request.data , ': Data from validation')
+    def create(self, request):
+        print(request.data , ': Data from validation')
 
     #     transaction_time = request.data['TransTime']
     #     str_transaction_date = str(transaction_time)
@@ -132,7 +132,7 @@ class C2BValidationApiView(CreateAPIView):
     #     )
 
     #     c2bmodel_data.save()
-    #     return Response('Success!')
+       return Response('Success!')
 
 
 class C2BConfirmationApiView(CreateAPIView):
@@ -181,8 +181,15 @@ class C2BConfirmationApiView(CreateAPIView):
         )
 
         c2bmodel_data.save()
+        c2b_data = C2BPayments.objects.all()
+        data = C2BPaymentsSerializer(c2b_data, many=True)
+        c2b_context = {
+            "Result Code": 0,
+            "Data": data
+        }
 
-        return Response({'Result_Desc': 0})
+
+        return Response(c2b_context)
 
 
 # @permission_classes([IsAuthenticated])
