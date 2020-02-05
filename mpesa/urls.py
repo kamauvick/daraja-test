@@ -2,11 +2,18 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, re_path,include
 from django.contrib.auth import views
+from rest_framework.routers import DefaultRouter, SimpleRouter
+from mpesa.api.views import MakeC2BPayment, MakeLNMPayment
+
+router = SimpleRouter()
+router.register('LNMPayment', MakeLNMPayment)
+router.register('C2BPayment', MakeC2BPayment)
+
 
 urlpatterns = [
-    re_path(r'^rest-auth/', include('rest_auth.urls')),
-    re_path(r'^rest-auth/registration/', include('rest_auth.registration.urls'))
-
+    path('auth/', include('rest_auth.urls')),
+    path('registration/', include('rest_auth.registration.urls')),
+    path('', include(router.urls)),
 ]
 
 if settings.DEBUG:

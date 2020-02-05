@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from mpesa.models import LNMOnline
+from mpesa.models import LNMOnline, C2BPayments
 
 class LNMOnlineSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,3 +15,24 @@ class LNMOnlineSerializer(serializers.ModelSerializer):
             'balance',
             'transaction_date',
             'phonenumber', )
+
+
+class C2BPaymentsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = C2BPayments
+        fields = (
+            'id',
+            'TransactionType',
+            'TransID',
+            'TransTime',
+            'TransAmount',
+            'BusinessShortCode',
+            'BillRefNumber',
+            'InvoiceNumber',
+            'OrgAccountBalance',
+            'ThirdPartyTransID',
+            'MSISDN',
+            'FirstName',
+            'MiddleName',
+            'LastName',
+            )

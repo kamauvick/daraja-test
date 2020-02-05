@@ -1,19 +1,20 @@
 import requests
 from datetime import datetime
 from decouple import config, Csv
-from keys import *
-from access_token import generate_access_token
-from utils import generate_timestamp
-from password import generate_password
+from scripts.keys import *
+from scripts.access_token import generate_access_token
+from scripts.utils import generate_timestamp
+from scripts.password import generate_password
 from decouple import Csv, config
-# Excecute all functions
 
+# Execute all functions
 formatted_time = generate_timestamp()
 password = generate_password(formatted_time)
 my_access_token = generate_access_token()
 
 
-def lipa_na_mpesa():
+def lipa_na_mpesa(phonenumber, amount):
+    print('Start excecuting the Simulate LNMOnline function:::')
     access_token = my_access_token
     api_url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
     headers = { "Authorization": "Bearer %s" % access_token }
@@ -22,16 +23,15 @@ def lipa_na_mpesa():
         "Password": password,
         "Timestamp": formatted_time,
         "TransactionType": "CustomerPayBillOnline",
-        "Amount": "1",
-        "PartyA": config('PhoneNumber'),
+        "Amount": amount,
+        "PartyA": phonenumber,
         "PartyB": config('BusinessShortCode'),
-        "PhoneNumber": config('PhoneNumber'),
+        "PhoneNumber":phonenumber,
         "CallBackURL": config('LNM_CALLBACK_URL'),
         "AccountReference": "vicks_test",
         "TransactionDesc": "Pay for internet"
     }
     
     response = requests.post(api_url, json = request, headers=headers)
-    print (response.text)
+    return response.text
     
-lipa_na_mpesa()

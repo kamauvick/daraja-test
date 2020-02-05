@@ -18,3 +18,17 @@ class LNMOnline(admin.ModelAdmin):
 
     ordering = ("id", 'transaction_date',)
 
+
+@admin.register(C2BPayments)
+class C2BPayments(admin.ModelAdmin):
+
+    list_display = ('id',
+                    'MSISDN',
+                    'TransAmount',
+                    'TransID',
+                    'TransTime',
+                    )
+
+    list_filter = ('id', 'MSISDN', 'TransTime',)
+
+    ordering = ("id",)

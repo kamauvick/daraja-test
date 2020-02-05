@@ -1,4 +1,4 @@
-""" Random helpful functions for our code. """
+""" Random helpful functions for the project. """
 
 from datetime import datetime
 
