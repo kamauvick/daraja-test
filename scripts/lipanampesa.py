@@ -6,8 +6,8 @@ from scripts.access_token import generate_access_token
 from scripts.utils import generate_timestamp
 from scripts.password import generate_password
 from decouple import Csv, config
-# Excecute all functions
 
+# Execute all functions
 formatted_time = generate_timestamp()
 password = generate_password(formatted_time)
 my_access_token = generate_access_token()
@@ -27,7 +27,7 @@ def lipa_na_mpesa(phonenumber, amount):
         "PartyA": phonenumber,
         "PartyB": config('BusinessShortCode'),
         "PhoneNumber":phonenumber,
-        "CallBackURL": "https://darajavick.herokuapp.com/api/payments/lnm/",
+        "CallBackURL": config('LNM_CALLBACK_URL'),
         "AccountReference": "vicks_test",
         "TransactionDesc": "Pay for internet"
     }
@@ -35,4 +35,3 @@ def lipa_na_mpesa(phonenumber, amount):
     response = requests.post(api_url, json = request, headers=headers)
     return response.text
     
-# lipa_na_mpesa()
