@@ -13,8 +13,6 @@ from datetime import datetime
 import pytz
 
 from scripts.lipanampesa import lipa_na_mpesa
-# from scripts.c2b_all.register import register_url
-# from scripts.c2b_all.simulate import simulate_c2b_transaction
 from scripts.c2b import register_url, simulate_c2b_transaction
 
 class LNMCallbackUrlApiView(CreateAPIView):
@@ -23,33 +21,6 @@ class LNMCallbackUrlApiView(CreateAPIView):
     permission_classes = [AllowAny]
 
     def create(self, request):
-        print(request.data) 
-
-        """
-        Callback url response
-
-        {'Body': 
-            {'stkCallback': 
-               {
-                    'MerchantRequestID': '21301-7887811-1', 
-                    'CheckoutRequestID': 'ws_CO_260120201833093897', 
-                    'ResultCode': 0, 
-                    'ResultDesc': 'The service request is processed successfully.', 
-                    'CallbackMetadata':
-                        {'Item': 
-                            [
-                                {'Name': 'Amount', 'Value': 2.0}, 
-                                {'Name': 'MpesaReceiptNumber', 'Value': 'OAQ6MVQHHI'}, 
-                                {'Name': 'Balance'},
-                                {'Name': 'TransactionDate', 'Value': 20200126183321}, 
-                                {'Name': 'PhoneNumber', 'Value': 254712115461}
-                            ]
-                        }
-                }
-            }   
-        }
-        """
-
         stkCallback = request.data['Body']['stkCallback']
         merchant_request_id = stkCallback['MerchantRequestID']
         checkout_request_id = stkCallback['CheckoutRequestID']
@@ -108,6 +79,7 @@ class C2BConfirmationApiView(CreateAPIView):
         transaction_time = request.data['TransTime']
         str_transaction_date = str(transaction_time)
         transaction_date = datetime.strptime(str_transaction_date, '%Y%m%d%H%M%S')
+
         #Sync Safaricoms response time with server time
         aware_transaction_date = pytz.utc.localize(transaction_date)
         print(aware_transaction_date)
@@ -150,11 +122,8 @@ class C2BConfirmationApiView(CreateAPIView):
             "Data": data
         }
 
-
         return Response(c2b_context)
 
-
-# @permission_classes([IsAuthenticated])
 class MakeLNMPayment(ModelViewSet):
     queryset = LNMOnline.objects.all()
     serializer_class = LNMOnlineSerializer

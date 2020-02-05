@@ -5,6 +5,12 @@ from django.dispatch import receiver
 
 # Create your models here.
 
+PACKAGE = (
+    ('Single', 'Single'),
+    ('Duo', 'Two People'),
+    ('Fam', 'Family Package'),
+)
+
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE, related_name='profile')
     username = models.CharField(max_length=200, null=True)
@@ -61,3 +67,4 @@ class C2BPayments(models.Model):
 
     def __repr__(self):
         return f'{self.InvoiceNumber}'
+
